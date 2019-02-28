@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>zookeeper集群部署 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="配置说明 tickTimeZookeeper基本时间单位(ms)。心跳时间间隔等于tickTime；会话超时时间等于2倍tickTime。 dataDir用于存储内存数据库快照。在没设置dataLogDir的情况下，还存储Zookeeper操作的事务日志。 dataLogDir用于存储Zookeeper操作的事务日志。 clientPort客户端连接的端口 initLimitfollower连接并">
+<meta name="keywords" content="zookeeper">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zookeeper集群部署">
+<meta property="og:url" content="http://yoursite.com/2019/02/28/zookeeper集群部署/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="配置说明 tickTimeZookeeper基本时间单位(ms)。心跳时间间隔等于tickTime；会话超时时间等于2倍tickTime。 dataDir用于存储内存数据库快照。在没设置dataLogDir的情况下，还存储Zookeeper操作的事务日志。 dataLogDir用于存储Zookeeper操作的事务日志。 clientPort客户端连接的端口 initLimitfollower连接并">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-28T06:40:26.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zookeeper集群部署">
+<meta name="twitter:description" content="配置说明 tickTimeZookeeper基本时间单位(ms)。心跳时间间隔等于tickTime；会话超时时间等于2倍tickTime。 dataDir用于存储内存数据库快照。在没设置dataLogDir的情况下，还存储Zookeeper操作的事务日志。 dataLogDir用于存储Zookeeper操作的事务日志。 clientPort客户端连接的端口 initLimitfollower连接并">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-zookeeper集群部署" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/28/zookeeper集群部署/" class="article-date">
+  <time datetime="2019-02-28T06:39:21.000Z" itemprop="datePublished">2019-02-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      zookeeper集群部署
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="配置说明"><a href="#配置说明" class="headerlink" title="配置说明"></a>配置说明</h3><ul>
+<li><strong>tickTime</strong><br>Zookeeper基本时间单位(ms)。心跳时间间隔等于tickTime；会话超时时间等于2倍tickTime。</li>
+<li><strong>dataDir</strong><br>用于存储内存数据库快照。在没设置dataLogDir的情况下，还存储Zookeeper操作的事务日志。</li>
+<li><strong>dataLogDir</strong><br>用于存储Zookeeper操作的事务日志。</li>
+<li><strong>clientPort</strong><br>客户端连接的端口</li>
+<li><strong>initLimit</strong><br>follower连接并同步到leader允许的最大时间间隔。数值为n个tickTime。</li>
+<li><strong>syncLimit</strong><br>follower服务器与leader服务器之间信息同步允许的最大时间间隔。数值为n个tickTime。</li>
+</ul>
+<h3 id="配置示例"><a href="#配置示例" class="headerlink" title="配置示例"></a>配置示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tickTime=2000</span><br><span class="line">initLimit=5</span><br><span class="line">syncLimit=2</span><br><span class="line">dataDir=/home/zookeeper/data</span><br><span class="line">dataLogDir=/home/zookeeper/logs</span><br><span class="line">clientPort=2181</span><br><span class="line">server.1=172.16.40.201:2888:3888</span><br><span class="line">server.2=172.16.40.202:2888:3888</span><br><span class="line">server.3=172.16.40.203:2888:3888</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>端口说明</strong><br>1.2181: 对client提供服务<br>2.2888: 集群内机器通讯使用<br>3.3888: 选举leader使用 </p>
+</blockquote>
+<h3 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h3><p><em>3台zk服务器为例：ServerA、ServerB、ServerC</em>   </p>
+<ol>
+<li><p>分别在3台服务器创建dataDir，dataLogDir目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /home/zookeeper/data</span><br><span class="line">mkdir -p /home/zookeeper/logs</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分别在3台服务器下载并解压Zookeeper：<a href="https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.13/zookeeper-3.4.13.tar.gz" target="_blank" rel="noopener">下载</a>  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf zookeeper-3.4.13.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入zookeeper目录，分别将 conf 目录下的 zoo_sample.cfg 复制一份重命名为 zoo201.cfg,zoo202.cfg,zoo203.cfg,并按照以上配置酌情修改。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp zoo_sample.cfg zoo201.cfg</span><br><span class="line">cp zoo_sample.cfg zoo202.cfg</span><br><span class="line">cp zoo_sample.cfg zoo203.cfg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分别在data目录下新建myid</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"1"</span> &gt; myid</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"2"</span> &gt; myid</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"3"</span> &gt; myid</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>server.X 这个数字就是对应，data/myid中的数字。在3个server的myid文件中分别写入了1，2，3，那么每个server中的zoo.cfg都配 server.1, server.2,server.3就行了。</p>
+</blockquote>
+<ol start="5">
+<li><p>分别启动zookeeper</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/zkServer.sh start conf/zoo201.cfg</span><br><span class="line">bin/zkServer.sh start conf/zoo202.cfg</span><br><span class="line">bin/zkServer.sh start conf/zoo203.cfg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试是否启动了该Server，若回复imok表示已经启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> ruok|nc 172.16.40.201 2181</span><br><span class="line"><span class="built_in">echo</span> ruok|nc 172.16.40.202 2181</span><br><span class="line"><span class="built_in">echo</span> ruok|nc 172.16.40.203 2181</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>连接到zk<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/zkCli.sh -server 172.16.40.201:2181</span><br><span class="line">bin/zkCli.sh -server 172.16.40.202:2181</span><br><span class="line">bin/zkCli.sh -server 172.16.40.203:2181</span><br></pre></td></tr></table></figure></p>
+<p>查看 zk 的运行状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/zkServer.sh status 172.16.40.201:2181</span><br><span class="line">bin/zkServer.sh status 172.16.40.202:2181</span><br><span class="line">bin/zkServer.sh status 172.16.40.203:2181</span><br></pre></td></tr></table></figure></p>
+<p>节点管理</p>
+<ol>
+<li><strong>ls path:</strong> 查看当前 ZooKeeper 中所包含的内容</li>
+<li><strong>create /zk myData:</strong> 创建一个新的 znode。这个命令创建了一个新的 znode 节点“ zk ”以及与它关联的字符串。</li>
+<li><strong>get path:</strong> 获取该znode信息 </li>
+<li><strong>set path data:</strong> 给znode设置值(前提是值存在)</li>
+<li><strong>delete path:</strong> 删除该znode</li>
+</ol>
+<p>传递四个字母的字符串给ZooKeeper，ZooKeeper会返回一些有用的信息。例如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> envi |nc 172.16.40.201 2181</span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>ZooKeeper四字命令</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>conf</td>
+<td>输出相关服务配置的详细信息。</td>
+</tr>
+<tr>
+<td>cons</td>
+<td>列出所有连接到服务器的客户端的完全的连接/会话的详细信息。包括“接受/发送”的包数量、会话id、操作延迟、最后的操作执行等等信息。</td>
+</tr>
+<tr>
+<td>dump</td>
+<td>列出未经处理的会话和临时节点。</td>
+</tr>
+<tr>
+<td>envi</td>
+<td>输出关于服务环境的详细信息（区别于conf命令）。</td>
+</tr>
+<tr>
+<td>reqs</td>
+<td>列出未经处理的请求</td>
+</tr>
+<tr>
+<td>ruok</td>
+<td>测试服务是否处于正确状态。如果确实如此，那么服务返回“imok”，否则不做任何相应。</td>
+</tr>
+<tr>
+<td>stat</td>
+<td>输出关于性能和连接的客户端的列表。</td>
+</tr>
+<tr>
+<td>wchs</td>
+<td>列出服务器watch的详细信息。</td>
+</tr>
+<tr>
+<td>wchc</td>
+<td>通过session列出服务器watch的详细信息，它的输出是一个与watch相关的会话的列表。</td>
+</tr>
+<tr>
+<td>wchp</td>
+<td>通过路径列出服务器watch的详细信息。它输出一个与session相关的路径。</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/28/zookeeper集群部署/" data-id="cjsobml4600016wvqos4kl1yz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/02/28/Canal服务端部署教程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Canal服务端部署教程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/28/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canal/">Canal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Canal/" style="font-size: 10px;">Canal</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/28/Canal服务端部署教程/">Canal服务端部署教程</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/28/zookeeper集群部署/">zookeeper集群部署</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/28/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
