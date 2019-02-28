@@ -46,6 +46,8 @@
     
     <title>
         
+            Spring Cloud Finchley - Eureka配置详解 | 
+        
         小记
     </title>
 
@@ -55,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content>
-    <meta name="keywords" content>
+    <meta name="keywords" content=",SpringCloud Eureka">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -216,7 +218,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="小记">
-    <meta name="msapplication-starturl" content="https://page.xesygao.com/">
+    <meta name="msapplication-starturl" content="https://page.xesygao.com/2019/02/28/Spring-Cloud-Finchley-Eureka配置详解/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="小记">
@@ -231,13 +233,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://page.xesygao.com/">
+    <meta property="og:url" content="https://page.xesygao.com/2019/02/28/Spring-Cloud-Finchley-Eureka配置详解/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="小记">
+    <meta property="og:title" content="Spring Cloud Finchley - Eureka配置详解 | 小记">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content>
-    
+    <meta property="og:article:tag" content="SpringCloud Eureka"> 
 
+    
+        <meta property="article:published_time" content="Thu Feb 28 2019 16:51:28 GMT+0800">
+        <meta property="article:modified_time" content="Thu Feb 28 2019 16:52:40 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -245,35 +250,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://page.xesygao.com">
+        <link rel="canonical" href="https://page.xesygao.com/2019/02/28/Spring-Cloud-Finchley-Eureka配置详解/index.html">
     
 
     <!-- Structured-data for SEO -->
     
         
+
+
 <script type="application/ld+json">
 {
-    "@context": "http://schema.org",
-    "@type": "Website",
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://page.xesygao.com/2019/02/28/Spring-Cloud-Finchley-Eureka配置详解/index.html",
+    "headline": "Spring Cloud Finchley - Eureka配置详解",
+    "datePublished": "Thu Feb 28 2019 16:51:28 GMT+0800",
+    "dateModified": "Thu Feb 28 2019 16:52:40 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Xesygao",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar-xesygao.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
     "publisher": {
         "@type": "Organization",
         "name": "小记",
-        "logo": "/img/favicon.png"
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
     },
-    "url": "https://page.xesygao.com",
-    "image": {
-        "@type": "ImageObject",
-        "url": "/img/favicon.png"
-    },
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://page.xesygao.com"
-    },
-    "description": ""
+    "keywords": ",SpringCloud Eureka",
+    "description": "",
 }
 </script>
-
-
 
 
     
@@ -307,501 +320,621 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
+                    <!-- Post TOC -->
+
     
-        <!-- Paradox Header -->
-        <!-- Daily pic -->
-<div class="mdl-card mdl-shadow--2dp daily-pic mdl-cell mdl-cell--8-col index-top-block">
-
-    <!-- Pic & Slogan -->
-    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/daily_pic.png)">
-        <p class="index-top-block-slogan"><a href="#">
-        
-            
-                Hi, nice to meet you
-            
-        
-        </a></p>
-    </div>
-
-    <!-- Avatar & Name -->
-    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-        <!-- Author Avatar -->
-        <div id="author-avatar">
-            <img src="/img/avatar-xesygao.png" width="32px" height="32px" alt="avatar">
-        </div>
-        <div>
-            <strong>Xesygao</strong>
-        </div>
-    </div>
-</div>
-
-        <!-- Blog info -->
-<div class="mdl-card mdl-shadow--2dp something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop index-top-block">
-
-    <!-- Search -->
-    
-    <!-- Google -->
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" method="post" action>
-        <label id="search-label" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent mdl-shadow--4dp" for="search">
-            <i class="material-icons mdl-color-text--white" role="presentation">search</i>
-        </label>
-
-        <form autocomplete="off" id="search-form" method="get" action="//google.com/search" accept-charset="UTF-8" class="mdl-textfield__expandable-holder" target="_blank">
-            <input class="mdl-textfield__input search-input" type="search" name="q" id="search" placeholder>
-            <label id="search-form-label" class="mdl-textfield__label" for="search"></label>
-
-            <input type="hidden" name="sitesearch" value="https://page.xesygao.com">
-        </form>
-    </div>
-
-
-
-
-
-
-
-    <!-- LOGO -->
-    <div class="something-else-logo mdl-color--white mdl-color-text--grey-600">
-        <a href="#" target="_blank">
-            <img src="/img/logo.png" alt="logo">
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
         </a>
     </div>
+    -->
 
-    <!-- Infomation -->
-    <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
-        <!-- Blog Title -->
-        <div>
-            <strong>小记</strong>
-        </div>
-        <div class="section-spacer"></div>
 
-        <!-- Pages -->
-        <button id="show-pages-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="material-icons" role="presentation">view_carousel</i>
-            <span class="visuallyhidden">Pages</span>
-        </button>
-        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="show-pages-button">
-            
-        </ul>
-
-        <!-- Menu -->
-        <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="material-icons" role="presentation">more_vert</i>
-            <span class="visuallyhidden">show menu</span>
-        </button>
-        <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="menubtn">
-            
-
-            
-
-            
-                <a class="index_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=小记&url=https://page.xesygao.com&pic=https://page.xesygao.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到微博
-                    </li>
-                </a>
-            
-
-            
-                <a class="index_share-link" href="https://twitter.com/intent/tweet?text=小记&url=https://page.xesygao.com&via=Xesygao" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到 Twitter
-                    </li>
-                </a>
-            
-
-            
-                <a class="index_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://page.xesygao.com" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到 Facebook
-                    </li>
-                </a>
-            
-
-            
-                <a class="index_share-link" href="https://plus.google.com/share?url=https://page.xesygao.com" target="_blank">
-                    <li class="mdl-menu__item mdl-js-ripple-effect">
-                        分享到 Google+
-                    </li>
-                </a>
-            
-
-            
-
-            
-
-            
-        </ul>
-    </div>
-</div>
-
+    <!-- Left aligned menu below button -->
     
-    <div class="locate-thumbnail-symbol"></div>
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
 
-    <!-- Pin on top -->
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置详解"><span class="post-toc-number">1.</span> <span class="post-toc-text">配置详解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#eureka-instance配置"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">eureka.instance配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#eureka-client配置"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">eureka.client配置</span></a></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/02/28/Spring-Cloud-Finchley-Eureka配置详解/">Spring Cloud Finchley - Eureka配置详解</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            配置详解
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/02/28/Spring-Cloud-Finchley-Eureka配置详解/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar-xesygao.png" width="44px" height="44px" alt="Xesygao's avatar">
-            </div>
-            <div>
-                <strong>Xesygao</strong>
-                <span>2月 28, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/02/28/Spring-Cloud-Finchley-Eureka开启密码认证/">Spring Cloud Finchley - Eureka开启密码认证</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/02/28/Spring-Cloud-Finchley-Eureka开启密码认证/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar-xesygao.png" width="44px" height="44px" alt="Xesygao's avatar">
-            </div>
-            <div>
-                <strong>Xesygao</strong>
-                <span>2月 28, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/02/28/Canal配置详解/">Canal配置详解</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/02/28/Canal配置详解/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar-xesygao.png" width="44px" height="44px" alt="Xesygao's avatar">
-            </div>
-            <div>
-                <strong>Xesygao</strong>
-                <span>2月 28, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/02/28/Canal服务端部署教程/">Canal服务端部署教程</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/02/28/Canal服务端部署教程/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar-xesygao.png" width="44px" height="44px" alt="Xesygao's avatar">
-            </div>
-            <div>
-                <strong>Xesygao</strong>
-                <span>2月 28, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/02/28/zookeeper集群部署/">zookeeper集群部署</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            配置说明
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/02/28/zookeeper集群部署/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar-xesygao.png" width="44px" height="44px" alt="Xesygao's avatar">
-            </div>
-            <div>
-                <strong>Xesygao</strong>
-                <span>2月 28, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/02/28/hello-world/">Hello World</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            Welcome to Hexo
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/02/28/hello-world/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar-xesygao.png" width="44px" height="44px" alt="Xesygao's avatar">
-            </div>
-            <div>
-                <strong>Xesygao</strong>
-                <span>2月 28, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                Spring Cloud Finchley - Eureka配置详解
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar-xesygao.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Xesygao</strong>
+        <span>2月 28, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/SpringCloud-Eureka/">SpringCloud Eureka</a>
+    </li></ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Spring Cloud Finchley - Eureka配置详解&url=https://page.xesygao.com/2019/02/28/Spring-Cloud-Finchley-Eureka配置详解/index.html&pic=https://page.xesygao.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Spring Cloud Finchley - Eureka配置详解&url=https://page.xesygao.com/2019/02/28/Spring-Cloud-Finchley-Eureka配置详解/index.html&via=Xesygao" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://page.xesygao.com/2019/02/28/Spring-Cloud-Finchley-Eureka配置详解/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://page.xesygao.com/2019/02/28/Spring-Cloud-Finchley-Eureka配置详解/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="配置详解"><a href="#配置详解" class="headerlink" title="配置详解"></a>配置详解</h2><p>原始配置文件说明在<code>spring-cloud-netflix-eureka-client-2.0.0.RELEASE.jar!/META-INF/spring-configuration-metadata.json</code></p>
+<h3 id="eureka-instance配置"><a href="#eureka-instance配置" class="headerlink" title="eureka.instance配置"></a>eureka.instance配置</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eureka.instance.appname</td>
+<td>注册到eureka的服务名</td>
+<td>默认值unknown</td>
+</tr>
+<tr>
+<td>eureka.instance.appGroupName</td>
+<td>注册到eureka的服务组名</td>
+<td>默认无</td>
+</tr>
+<tr>
+<td>eureka.instance.instanceEnabledOnit</td>
+<td>是否使实例一注册到eureka服务端就开始分担流量</td>
+<td>默认false</td>
+</tr>
+<tr>
+<td>eureka.instance.nonSecurePort</td>
+<td>http端口</td>
+<td>默认80</td>
+</tr>
+<tr>
+<td>eureka.instance.securePort</td>
+<td>https端口</td>
+<td>默认443</td>
+</tr>
+<tr>
+<td>eureka.instance.nonSecurePortEnabled</td>
+<td>是否启用http</td>
+<td>默认true</td>
+</tr>
+<tr>
+<td>eureka.instance.securePortEnabled</td>
+<td>是否启用https</td>
+<td>默认false</td>
+</tr>
+<tr>
+<td>eureka.instance.leaseRenewalIntervalInSeconds</td>
+<td>心跳间隔时间</td>
+<td>默认30(s)</td>
+</tr>
+<tr>
+<td>eureka.instance.leaseExpirationDurationInSeconds</td>
+<td>服务中心删除此服务实例的等待时间(秒为单位),时间间隔为最后一次服务中心接受到的心跳时间与当前时间的时间差</td>
+<td>默认90(s)</td>
+</tr>
+<tr>
+<td>eureka.instance.virtualHostName</td>
+<td>该实例的虚拟主机名称(http)</td>
+<td>默认值”unknown”</td>
+</tr>
+<tr>
+<td>eureka.instance.instanceId</td>
+<td>实例id</td>
+<td>默认无，在同一个appName下该实例id唯一</td>
+</tr>
+<tr>
+<td>eureka.instance.secureVirtualHostName</td>
+<td>该实例的虚拟主机名称(https)</td>
+<td>默认值”unknown”</td>
+</tr>
+<tr>
+<td>eureka.instance.aSGName</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.instance.metadataMap</td>
+<td>自定义的元数据</td>
+<td>默认无，配置例子:eureka.instance.metadataMap.dataname=datavalue</td>
+</tr>
+<tr>
+<td>eureka.instance.dataCenterInfo</td>
+<td>该实例所在数据中心信息</td>
+<td>默认无</td>
+</tr>
+<tr>
+<td>eureka.instance.ipAddress</td>
+<td>该实例ip地址</td>
+<td>默认无</td>
+</tr>
+<tr>
+<td>eureka.instance.preferIpAddress</td>
+<td>是否优先使用ip地址</td>
+<td>默认false</td>
+</tr>
+<tr>
+<td>eureka.instance.statusPageUrlPath</td>
+<td>该实例的状态呈现url,相对路径</td>
+<td>默认值”\status”</td>
+</tr>
+<tr>
+<td>eureka.instance.statusPageUrl</td>
+<td>该实例的状态呈现url,绝对路径</td>
+<td>默认无</td>
+</tr>
+<tr>
+<td>eureka.instance.homePageUrlPath</td>
+<td>该实例的主页url,相对路径</td>
+<td>默认”/“</td>
+</tr>
+<tr>
+<td>eureka.instance.homePageUrl</td>
+<td>该实例的主页url,绝对路径</td>
+<td>默认无</td>
+</tr>
+<tr>
+<td>eureka.instance.healthCheckUrlPath</td>
+<td>该实例健康检查url,相对路径</td>
+<td>默认”/health”</td>
+</tr>
+<tr>
+<td>eureka.instance.healthCheckUrl</td>
+<td>该实例健康检查url,绝对路径</td>
+<td>默认无</td>
+</tr>
+<tr>
+<td>eureka.instance.secureHealthCheckUrl</td>
+<td>该实例的安全健康检查url,绝对路径</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.instance.namespace</td>
+<td>该服务实例的命名空间,用于查找属性</td>
+<td>默认值”eureka”,在springcloud中被忽略</td>
+</tr>
+<tr>
+<td>eureka.instance.hostname</td>
+<td>注册主机名</td>
+<td>默认无</td>
+</tr>
+<tr>
+<td>eureka.instance.initialStatus</td>
+<td>注册到eureka的初始状态</td>
+<td>默认无,例如:(UP、DOWN、STARTING、OUT_OF_SERVICE、UNKNOW)</td>
+</tr>
+<tr>
+<td>eureka.instance.defaultAddressResolutionOrder</td>
+<td>默认的地址解析顺序</td>
+<td>默认值”[]”</td>
+</tr>
+<tr>
+<td>eureka.instance.environment</td>
+<td>该实例的环境配置</td>
+<td>默认无,如果不配置，则为test</td>
+</tr>
+</tbody>
+</table>
+<h3 id="eureka-client配置"><a href="#eureka-client配置" class="headerlink" title="eureka.client配置"></a>eureka.client配置</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eureka.client.propertyResolver</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.enabled</td>
+<td>是否启用eureka客户端</td>
+<td>默认值true</td>
+</tr>
+<tr>
+<td>eureka.client.transport</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.registryFetchIntervalSeconds</td>
+<td>从eureka服务器注册表中获取注册信息的时间间隔(s)</td>
+<td>默认为30秒</td>
+</tr>
+<tr>
+<td>eureka.client.instanceInfoReplicationIntervalSeconds</td>
+<td>复制实例变化信息到eureka服务器的时间间隔(s)</td>
+<td>默认为30秒</td>
+</tr>
+<tr>
+<td>eureka.client.initialInstanceInfoReplicationIntervalSeconds</td>
+<td>最初复制实例信息到eureka服务器所需的时间间隔(s)</td>
+<td>默认为40秒</td>
+</tr>
+<tr>
+<td>eureka.client.eurekaServiceUrlPollIntervalSeconds</td>
+<td>询问Eurekaservice url信息变化的时间间隔(s)</td>
+<td>默认为300(s)</td>
+</tr>
+<tr>
+<td>eureka.client.proxyHost</td>
+<td>eureka服务的代理主机</td>
+<td>默认无</td>
+</tr>
+<tr>
+<td>eureka.client.proxyPort</td>
+<td>eureka服务的代理端口</td>
+<td>默认无</td>
+</tr>
+<tr>
+<td>eureka.client.proxyUserName</td>
+<td>eureka服务的代理用户名</td>
+<td>默认无</td>
+</tr>
+<tr>
+<td>eureka.client.proxyPassword</td>
+<td>eureka服务的代理密码</td>
+<td>默认无</td>
+</tr>
+<tr>
+<td>eureka.client.eurekaServerReadTimeoutSeconds</td>
+<td>eureka服务读取超时前等待的时间</td>
+<td>默认为8秒</td>
+</tr>
+<tr>
+<td>eureka.client.eurekaServerConnectTimeoutSeconds</td>
+<td>eureka服务连接超时前等待的时间</td>
+<td>默认为5秒</td>
+</tr>
+<tr>
+<td>eureka.client.backupRegistryImpl</td>
+<td>实现了BackupRegistry接口的类名</td>
+<td>该类作为eureka客户端第一次获取注册信息时的失败回退选项</td>
+</tr>
+<tr>
+<td>eureka.client.eurekaServerTotalConnections</td>
+<td>eureka客户端可连接eureka服务端连接总数</td>
+<td>默认是200</td>
+</tr>
+<tr>
+<td>eureka.client.eurekaServerTotalConnectionsPerHost</td>
+<td>eureka客户端可连接eureka服务端主机总数</td>
+<td>默认是50</td>
+</tr>
+<tr>
+<td>eureka.client.eurekaServerURLContext</td>
+<td>eureka注册中心路径</td>
+<td>默认无。该选项在eureka.client.useDnsForFetchingServiceUrls值为true时需配置，用于构造service url</td>
+</tr>
+<tr>
+<td>eureka.client.eurekaServerPort</td>
+<td>eureka服务端口</td>
+<td>该选项在eureka.client.useDnsForFetchingServiceUrls值为true时需配置，用于构造service url</td>
+</tr>
+<tr>
+<td>eureka.client.eurekaServerDNSName</td>
+<td>dns名</td>
+<td>默认值无，该选项在eureka.client.useDnsForFetchingServiceUrls值为true时需配置</td>
+</tr>
+<tr>
+<td>eureka.client.region</td>
+<td>当前实例所属region</td>
+<td>默认值”us-east-1”</td>
+</tr>
+<tr>
+<td>eureka.client.eurekaConnectionIdleTimeoutSeconds</td>
+<td>到eureka服务端的http连接关闭前允许闲置时间</td>
+<td>默认值30(s)</td>
+</tr>
+<tr>
+<td>eureka.client.registryRefreshSingleVipAddress</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.heartbeatExecutorThreadPoolSize</td>
+<td>初始心跳执行器(heartbeatExecutor)线程池大小</td>
+<td>默认值2</td>
+</tr>
+<tr>
+<td>eureka.client.heartbeatExecutorExponentialBackOffBound</td>
+<td>心跳执行器指数退避策略相关属性，其值为重试延迟的最大倍数</td>
+<td>默认为10</td>
+</tr>
+<tr>
+<td>eureka.client.cacheRefreshExecutorThreadPoolSize</td>
+<td>初始缓存刷新执行器(cacheRefreshExecutor)线程池大小</td>
+<td>默认值2</td>
+</tr>
+<tr>
+<td>eureka.client.cacheRefreshExecutorExponentialBackOffBound</td>
+<td>缓存刷新执行器指数退避策略相关属性，其值为重试延迟的最大倍数</td>
+<td>默认为10。获取注册信息的操作也是一个异步任务，每隔30秒执行一次（通过eureka.client.registryFetchIntervalSeconds配置），如果操作失败，也是以2的指数形式延长重试时间，直到达到eureka.client.registryFetchIntervalSeconds * eureka.client.cacheRefreshExecutorExponentialBackOffBound 这个上限，之后一直以这个上限值作为重试间隔，直至重新获取到注册信息，并且重新尝试获取注册信息的次数是不受限制的。 </td>
+</tr>
+<tr>
+<td>eureka.client.serviceUrl</td>
+<td>指定服务注册中心地址</td>
+<td>如果服务注册中心为高可用集群时，多个注册中心地址以逗号分隔</td>
+</tr>
+<tr>
+<td>eureka.client.gZipContent</td>
+<td>是否开启gzip压缩</td>
+<td>默认true，可以减少网络流量</td>
+</tr>
+<tr>
+<td>eureka.client.useDnsForFetchingServiceUrls</td>
+<td>是否通过dns获取eureka服务端列表</td>
+<td>默认值false</td>
+</tr>
+<tr>
+<td>eureka.client.registerWithEureka</td>
+<td>是否注册到eureka服务端</td>
+<td>默认true</td>
+</tr>
+<tr>
+<td>eureka.client.preferSameZoneEureka</td>
+<td>优先选择同一机房实例</td>
+<td>默认true</td>
+</tr>
+<tr>
+<td>eureka.client.logDeltaDiff</td>
+<td>是否记录eureka客户端与服务端之间注册信息的差异</td>
+<td>默认false</td>
+</tr>
+<tr>
+<td>eureka.client.disableDelta</td>
+<td>是否禁用增量更新从而获取全量注册信息</td>
+<td>默认值为false</td>
+</tr>
+<tr>
+<td>eureka.client.fetchRemoteRegionsRegistry</td>
+<td>一串由”,”分隔的rigion列表，eureka客户端从这些rigion获取注册信息</td>
+<td>配置了该项则需要配置eureka.client.availabilityZones</td>
+</tr>
+<tr>
+<td>eureka.client.availabilityZones</td>
+<td>当前实例所属rigion可用zone列表</td>
+<td>rigion和zone是AWS中的概念，rigion相当于一个区域，zone相当于一个机房</td>
+</tr>
+<tr>
+<td>eureka.client.filterOnlyUpInstances</td>
+<td>是否只获取状态为”UP”的实例</td>
+<td>默认true</td>
+</tr>
+<tr>
+<td>eureka.client.fetchRegistry</td>
+<td>是否从eureka服务端获取注册信息</td>
+<td>默认true</td>
+</tr>
+<tr>
+<td>eureka.client.dollarReplacement</td>
+<td>在eureka服务端序列化/反序列化信息时替换$的字符串</td>
+<td>默认值为_-</td>
+</tr>
+<tr>
+<td>eureka.client.escapeCharReplacement</td>
+<td>在eureka服务端序列化/反序列化信息时替换_的字符串</td>
+<td>默认值__</td>
+</tr>
+<tr>
+<td>eureka.client.allowRedirects</td>
+<td>是否允许将请求重定向到另一个服务/集群</td>
+<td>默认值false</td>
+</tr>
+<tr>
+<td>eureka.client.onDemandUpdateStatusChange</td>
+<td>如果设置为true，则通过ApplicationInfoManager进行的本地状态更新将触发对远程eureka服务器的按需(但限速)注册/更新</td>
+<td>默认true</td>
+</tr>
+<tr>
+<td>eureka.client.encoderName</td>
+<td>编码器名称</td>
+<td>临时配置，当最新编解码器稳定时该配置项将被移除</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.decoderName</td>
+<td>解码器名称</td>
+<td>临时配置，当最新编解码器稳定时该配置项将被移除</td>
+</tr>
+<tr>
+<td>eureka.client.clientDataAccept</td>
+<td>EurekaAccept name for client data accept</td>
+<td></td>
+</tr>
+<tr>
+<td>eureka.client.shouldUnregisterOnShutdown</td>
+<td>是否在关闭时取消注册</td>
+<td>默认true</td>
+</tr>
+<tr>
+<td>eureka.client.shouldEnforceRegistrationAtInit</td>
+<td>是否在初始化阶段强行注册到eureka server</td>
+<td>默认false</td>
+</tr>
+<tr>
+<td>eureka.client.order</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/02/28/Spring-Cloud-Finchley-Eureka开启密码认证/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -1092,12 +1225,6 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
-
-    <!-- Swiftye -->
-    
-
-    <!-- Local Search-->
-    
 
 
 <!-- UC Browser Compatible -->
