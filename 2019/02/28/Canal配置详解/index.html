@@ -46,7 +46,7 @@
     
     <title>
         
-            标签: zookeeper | 
+            Canal配置文件详解 | 
         
         小记
     </title>
@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content>
-    <meta name="keywords" content>
+    <meta name="keywords" content=",canal">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -218,7 +218,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="小记">
-    <meta name="msapplication-starturl" content="https://page.xesygao.com/tags/zookeeper/">
+    <meta name="msapplication-starturl" content="https://page.xesygao.com/2019/02/28/Canal配置详解/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="小记">
@@ -233,13 +233,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://page.xesygao.com/tags/zookeeper/">
+    <meta property="og:url" content="https://page.xesygao.com/2019/02/28/Canal配置详解/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: zookeeper | 小记">
+    <meta property="og:title" content="Canal配置文件详解 | 小记">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content>
-    
+    <meta property="og:article:tag" content="canal"> 
 
+    
+        <meta property="article:published_time" content="Thu Feb 28 2019 16:45:00 GMT+0800">
+        <meta property="article:modified_time" content="Thu Feb 28 2019 16:45:19 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -247,13 +250,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://page.xesygao.com/tags/zookeeper/index.html">
+        <link rel="canonical" href="https://page.xesygao.com/2019/02/28/Canal配置详解/index.html">
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://page.xesygao.com/2019/02/28/Canal配置详解/index.html",
+    "headline": "Canal配置文件详解",
+    "datePublished": "Thu Feb 28 2019 16:45:00 GMT+0800",
+    "dateModified": "Thu Feb 28 2019 16:45:19 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Xesygao",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar-xesygao.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "小记",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",canal",
+    "description": "",
+}
+</script>
 
 
     
@@ -287,93 +320,611 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Canal配置文件详解"><span class="post-toc-number">1.</span> <span class="post-toc-text">Canal配置文件详解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置目录结构"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">配置目录结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Canal-Server配置文件canal-properties"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Canal Server配置文件canal.properties</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#common参数定义"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">common参数定义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#instance参数定义"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">instance参数定义</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Canal-instance配置文件instance-properties"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Canal instance配置文件instance.properties</span></a></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/02/28/zookeeper集群部署/">zookeeper集群部署</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            配置说明
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/02/28/zookeeper集群部署/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar-xesygao.png" width="44px" height="44px" alt="Xesygao's avatar">
-            </div>
-            <div>
-                <strong>Xesygao</strong>
-                <span>2月 28, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                Canal配置文件详解
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar-xesygao.png" width="44px" height="44px" alt="Author Avatar">
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Xesygao</strong>
+        <span>2月 28, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/canal/">canal</a>
+    </li></ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Canal配置文件详解&url=https://page.xesygao.com/2019/02/28/Canal配置详解/index.html&pic=https://page.xesygao.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Canal配置文件详解&url=https://page.xesygao.com/2019/02/28/Canal配置详解/index.html&via=Xesygao" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://page.xesygao.com/2019/02/28/Canal配置详解/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://page.xesygao.com/2019/02/28/Canal配置详解/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="Canal配置文件详解"><a href="#Canal配置文件详解" class="headerlink" title="Canal配置文件详解"></a>Canal配置文件详解</h1><h2 id="配置目录结构"><a href="#配置目录结构" class="headerlink" title="配置目录结构"></a>配置目录结构</h2><p><img src="https://ws1.sinaimg.cn/large/c6073458gy1fuzk4gpzmuj20h205cgm0.jpg" alt="配置文件目录结构"></p>
+<h2 id="Canal-Server配置文件canal-properties"><a href="#Canal-Server配置文件canal-properties" class="headerlink" title="Canal Server配置文件canal.properties"></a>Canal Server配置文件canal.properties</h2><h3 id="common参数定义"><a href="#common参数定义" class="headerlink" title="common参数定义"></a>common参数定义</h3><table>
+<thead>
+<tr>
+<th>参数名字</th>
+<th>参数说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>canal.id</td>
+<td>每个canal server实例的唯一标识，暂无实际意义</td>
+<td>1</td>
+</tr>
+<tr>
+<td>canal.ip</td>
+<td>canal server绑定的本地IP信息，如果不配置，默认选择一个本机IP进行启动服务</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.port</td>
+<td>canal server提供socket服务的端口</td>
+<td>11111</td>
+</tr>
+<tr>
+<td>canal.metrics.pull.port</td>
+<td>监控接口端口(配合Prometheus使用)</td>
+<td>11112</td>
+</tr>
+<tr>
+<td>canal.zkServers</td>
+<td>canal server链接zookeeper集群的链接信息(用来实现HA)</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.zookeeper.flush.period</td>
+<td>canal持久化数据到zookeeper上的更新频率，单位毫秒</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>canal.withoutNetty</td>
+<td>是否关闭server端的netty服务</td>
+<td>false</td>
+</tr>
+<tr>
+<td>canal.file.data.dir</td>
+<td>flush meta cursor/parse position to file。记录消费位点到文件，当使用spring/file-instance.xml配置文件时</td>
+<td>${canal.conf.dir}</td>
+</tr>
+<tr>
+<td>canal.file.flush.period</td>
+<td>canal持久化数据到文件上的更新频率，单位毫秒</td>
+<td>1000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="instance参数定义"><a href="#instance参数定义" class="headerlink" title="instance参数定义"></a>instance参数定义</h3><table>
+<thead>
+<tr>
+<th>参数名字</th>
+<th>参数说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>canal.instance.memory.buffer.size</td>
+<td>canal内存store中可缓存buffer记录数，需要为2的指数</td>
+<td>16384</td>
+</tr>
+<tr>
+<td>canal.instance.memory.buffer.memunit</td>
+<td>内存记录的单位大小，默认1KB，和buffer.size组合决定最终的内存使用大小</td>
+<td>1024</td>
+</tr>
+<tr>
+<td>canal.instance.memory.batch.mode</td>
+<td>canal内存store中数据缓存模式<br>1. ITEMSIZE :根据buffer.size进行限制，只限制记录的数量式<br>2. MEMSIZE : 根据buffer.size  * buffer.memunit的大小，限制缓存记录的大小</td>
+<td>MEMSIZE</td>
+</tr>
+<tr>
+<td>canal.instance.detecting.enable</td>
+<td>是否开启心跳检查</td>
+<td>false</td>
+</tr>
+<tr>
+<td>canal.instance.detecting.sql</td>
+<td>心跳检查sql</td>
+<td>select 1</td>
+</tr>
+<tr>
+<td>canal.instance.detecting.interval.time</td>
+<td>心跳检查频率，单位秒</td>
+<td>3</td>
+</tr>
+<tr>
+<td>canal.instance.detecting.retry.threshold</td>
+<td>心跳检查失败重试次数</td>
+<td>3</td>
+</tr>
+<tr>
+<td>canal.instance.detecting.heartbeatHaEnable</td>
+<td>心跳检查失败后，是否开启自动mysql自动切换<br>说明：比如心跳检查失败超过阀值后，如果该配置为true，canal就会自动链到mysql备库获取binlog数据</td>
+<td>false</td>
+</tr>
+<tr>
+<td>canal.instance.transaction.size</td>
+<td>最大事务完整解析的长度支持。超过该长度后，一个事务可能会被拆分成多次提交到canal store中，无法保证事务的完整可见性</td>
+<td>1024</td>
+</tr>
+<tr>
+<td>canal.instance.fallbackIntervalInSeconds</td>
+<td>canal发生mysql切换时，在新的mysql库上查找binlog时需要往前查找的时间，单位秒<br>说明：mysql主备库可能存在解析延迟或者时钟不统一，需要回退一段时间，保证数据不丢</td>
+<td>60</td>
+</tr>
+<tr>
+<td>canal.instance.network.receiveBufferSize</td>
+<td>网络链接参数，SocketOptions.SO_RCVBUF</td>
+<td>16384</td>
+</tr>
+<tr>
+<td>canal.instance.network.sendBufferSize</td>
+<td>网络链接参数，SocketOptions.SO_SNDBUF</td>
+<td>16384</td>
+</tr>
+<tr>
+<td>canal.instance.network.soTimeout</td>
+<td>网络链接参数，SocketOptions.SO_TIMEOUT</td>
+<td>30</td>
+</tr>
+<tr>
+<td>canal.instance.filter.druid.ddl</td>
+<td>是否使用druid处理所有的ddl解析来获取库和表名</td>
+<td>true</td>
+</tr>
+<tr>
+<td>canal.instance.filter.query.dcl</td>
+<td>是否忽略ddl语句</td>
+<td>false</td>
+</tr>
+<tr>
+<td>canal.instance.filter.query.dml</td>
+<td>是否忽略ddl语句</td>
+<td>false</td>
+</tr>
+<tr>
+<td>canal.instance.filter.query.ddl</td>
+<td>是否忽略ddl语句</td>
+<td>false</td>
+</tr>
+<tr>
+<td>canal.instance.filter.table.error</td>
+<td>是否忽略binlog表结构获取失败的异常<br>(主要解决回溯binlog时,对应表已被删除或者表结构和binlog不一致的情况)</td>
+<td>false</td>
+</tr>
+<tr>
+<td>canal.instance.filter.rows</td>
+<td>是否忽略dml的数据变更事件<br>(主要针对用户只订阅ddl/dcl的操作)</td>
+<td>false</td>
+</tr>
+<tr>
+<td>canal.instance.filter.transaction.entry</td>
+<td>是否忽略事务头和尾,比如针对写入kakfa的消息时，不需要写入TransactionBegin/Transactionend事件</td>
+<td>true</td>
+</tr>
+<tr>
+<td>canal.instance.binlog.format</td>
+<td>支持的binlog/format格式列表<br>(otter会有支持format格式限制)</td>
+<td>ROW,STATEMENT,MIXED</td>
+</tr>
+<tr>
+<td>canal.instance.binlog.image</td>
+<td>支持的binlog/image格式列表<br>(otter会有支持format格式限制)</td>
+<td>FULL,MINIMAL,NOBLOB</td>
+</tr>
+<tr>
+<td>canal.instance.get.ddl.isolation</td>
+<td>ddl语句是否单独一个batch返回<br>(比如下游dml/ddl如果做batch内无序并发处理,会导致结构不一致)</td>
+<td>false</td>
+</tr>
+<tr>
+<td>canal.instance.parser.parallel</td>
+<td>是否开启binlog并行解析模式<br>(串行解析资源占用少,但性能有瓶颈, 并行解析可以提升近2.5倍+)</td>
+<td>true</td>
+</tr>
+<tr>
+<td>canal.instance.parser.parallelThreadSize</td>
+<td>并行线程数，默认为可用处理器数的60%。建议不超过Runtime.getRuntime().availableProcessors()</td>
+<td>16</td>
+</tr>
+<tr>
+<td>canal.instance.parser.parallelBufferSize</td>
+<td>binlog并行解析的异步ringbuffer队列<br>(必须为2的指数)</td>
+<td>256</td>
+</tr>
+<tr>
+<td>canal.instance.tsdb.enable</td>
+<td>是否开启tablemeta的tsdb能力</td>
+<td>true</td>
+</tr>
+<tr>
+<td>canal.instance.tsdb.dir</td>
+<td>主要针对h2-tsdb.xml时对应h2文件的存放目录,默认为conf/xx/h2.mv.db</td>
+<td>${canal.file.data.dir:../conf}/${canal.instance.destination:}</td>
+</tr>
+<tr>
+<td>canal.instance.tsdb.url</td>
+<td>jdbc url的配置<br>(h2的地址为默认值，如果是mysql需要自行定义)</td>
+<td>jdbc:h2:${canal.instance.tsdb.dir}/h2;CACHE_SIZE=1000;MODE=MYSQL;</td>
+</tr>
+<tr>
+<td>canal.instance.tsdb.dbUsername</td>
+<td>tsdb用户名</td>
+<td>canal</td>
+</tr>
+<tr>
+<td>canal.instance.tsdb.dbPassword</td>
+<td>tsdb密码</td>
+<td>canal</td>
+</tr>
+<tr>
+<td>canal.instance.tsdb.spring.xml</td>
+<td>全局的tsdb配置方式的组件文件</td>
+<td>classpath:spring/tsdb/h2-tsdb.xml或者classpath:spring/tsdb/mysql-tsdb.xml</td>
+</tr>
+<tr>
+<td>canal.instance.rds.accesskey</td>
+<td>aliyun账号的ak信息<br> (如果不需要在本地binlog超过18小时被清理后自动下载oss上的binlog，可以忽略该值)</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.rds.secretkey</td>
+<td>aliyun账号的sk信息<br>(如果不需要在本地binlog超过18小时被清理后自动下载oss上的binlog，可以忽略该值)</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.destinations</td>
+<td>当前server上部署的instance列表，多个实例用逗号分隔</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.conf.dir</td>
+<td>conf/目录所在的路径</td>
+<td>../conf</td>
+</tr>
+<tr>
+<td>canal.auto.scan</td>
+<td>开启instance自动扫描<br>如果配置为true，canal.conf.dir目录下的instance配置变化会自动触发：<br>a. instance目录新增：触发instance配置载入，lazy为true时则自动启动<br>b. instance目录删除：卸载对应instance配置，如已启动则进行关闭<br>c. instance.properties文件变化：reload instance配置，如已启动自动进行重启操作</td>
+<td>true</td>
+</tr>
+<tr>
+<td>canal.auto.scan.interval</td>
+<td>instance自动扫描的间隔时间，单位秒</td>
+<td>5</td>
+</tr>
+<tr>
+<td>canal.instance.global.mode</td>
+<td>全局配置加载方式</td>
+<td>spring </td>
+</tr>
+<tr>
+<td>canal.instance.global.lazy</td>
+<td>全局lazy模式</td>
+<td>false</td>
+</tr>
+<tr>
+<td>canal.instance.global.manager.address</td>
+<td>全局的manager配置方式的链接信息</td>
+<td>127.0.0.1:1099</td>
+</tr>
+<tr>
+<td>canal.instance.global.spring.xml</td>
+<td>全局的spring配置方式的组件文件</td>
+<td>classpath:spring/memory-instance.xml或者classpath:spring/file-instance.xml或者classpath:spring/default-instance.xml</td>
+</tr>
+</tbody>
+</table>
+<p><br><br>在canal.properties定义了canal.destinations后，需要在canal.conf.dir对应的目录下建立同名的文件<br>比如：</p>
+<blockquote>
+<p>canal.destinations =IMMIG_200,IMMIG_201</p>
+</blockquote>
+<p> 这时需要创IMMIG_200和IMMIG_201两个目录，每个目录里各自有一份<code>instance.properties</code>.</p>
+<h2 id="Canal-instance配置文件instance-properties"><a href="#Canal-instance配置文件instance-properties" class="headerlink" title="Canal instance配置文件instance.properties"></a>Canal instance配置文件instance.properties</h2><table>
+<thead>
+<tr>
+<th>参数名字</th>
+<th>参数说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>canal.instance.mysql.slaveId</td>
+<td>mysql集群配置中的serverId概念，需要保证和当前mysql集群中id唯一(v1.0.26+版本之后canal会自动生成，不需要手工指定)</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.gtidon</td>
+<td>是否启用mysql gtid的订阅模式</td>
+<td>true</td>
+</tr>
+<tr>
+<td>canal.instance.master.address</td>
+<td>mysql主库链接地址</td>
+<td>127.0.0.1:3306</td>
+</tr>
+<tr>
+<td>canal.instance.master.journal.name</td>
+<td>mysql主库链接时起始的binlog文件</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.master.position</td>
+<td>mysql主库链接时起始的binlog偏移量</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.master.timestamp</td>
+<td>mysql主库链接时起始的binlog的时间戳</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.master.gtid</td>
+<td>mysql主库链接时对应的gtid位点</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.rds.accesskey</td>
+<td>aliyun账号的ak信息<br> (如果不需要在本地binlog超过18小时被清理后自动下载oss上的binlog，可以忽略该值)</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.rds.secretkey</td>
+<td>aliyun账号的sk信息<br> (如果不需要在本地binlog超过18小时被清理后自动下载oss上的binlog，可以忽略该值)</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.rds.instanceId</td>
+<td>aliyun rds对应的实例id信息<br>(如果不需要在本地binlog超过18小时被清理后自动下载oss上的binlog，可以忽略该值)</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.standby.address</td>
+<td>mysql备库链接地址</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.standby.journal.name</td>
+<td>mysql备库链接时起始的binlog文件</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.standby.position</td>
+<td>mysql备库链接时起始的binlog偏移量</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.standby.timestamp</td>
+<td>mysql备库链接时起始的binlog的时间戳</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.standby.gtid</td>
+<td>mysql备库链接时对应的gtid位点</td>
+<td>无</td>
+</tr>
+<tr>
+<td>canal.instance.dbUsername</td>
+<td>mysql数据库帐号</td>
+<td>canal</td>
+</tr>
+<tr>
+<td>canal.instance.dbPassword</td>
+<td>mysql数据库密码</td>
+<td>canal</td>
+</tr>
+<tr>
+<td>canal.instance.connectionCharset</td>
+<td>mysql 数据解析编码</td>
+<td>UTF-8</td>
+</tr>
+<tr>
+<td>canal.instance.filter.regex</td>
+<td>mysql 数据解析关注的表，Perl正则表达式</td>
+<td>.*\..*</td>
+</tr>
+<tr>
+<td>canal.instance.filter.black.regex</td>
+<td>mysql 数据解析表的黑名单</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/02/28/Canal服务端部署教程/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -519,6 +1070,14 @@ It will not impact the appearance and can give developers a lot of support :)
 </aside>
 
                     
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 
                     
 
