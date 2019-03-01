@@ -651,10 +651,12 @@ sh $current_dir/startup.sh
 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
 
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+
 
 <script>
     var gitalk = new Gitalk({
-			id: location.pathname,
+			id: md5(location.pathname),
             clientID: 'a5379e14bae57f35b702',
             clientSecret: '00b025b6b16857771772d06011edfdb3ae32cd46',
             repo: 'xesygao.github.io',
