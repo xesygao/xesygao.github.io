@@ -277,7 +277,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar-xesygao.png"
         },
-        "description": "Hi, nice to meet you"
+        "description": "Never start something you're not willing to finish"
     },
     "publisher": {
         "@type": "Organization",
@@ -347,7 +347,7 @@
         <p class="header-slogan header-item">
         
             
-                Hi, nice to meet you
+                Never start something you're not willing to finish
             
         
         </p>
@@ -965,6 +965,10 @@
 
 
 
+    
+        <script>lsloader.load("sm_js","/js/smoothscroll.js?lOy/ACj5suSNi7ZVFVbpFQ==", true)</script>
+    
+
 
 
 
@@ -987,6 +991,10 @@
 <!-- Import prettify js  -->
 
 
+    
+        <script>lsloader.load("hanabi","/js/hanabi-browser-bundle.js?Pki5+pzkluqu53g+ouMWpA==", true)</script>
+    
+
 
 <!-- Window Load -->
 <!-- add class for prettify -->
@@ -997,6 +1005,10 @@
     });
 
     
+    
+        
+        
+        HanabiBrowser.start('pre code',false);
     
 </script>
 
@@ -1030,11 +1042,13 @@
     var copyrightNow = new Date().getFullYear();
     var textContent = document.querySelector('span[year]')
 
-    copyrightSince = 0000;
+    copyrightSince = 2019;
     if (copyrightSince === copyrightNow||copyrightSince === 0000) {
-        textContent.textContent = copyrightNow
+	    if(textContent)
+            textContent.textContent = copyrightNow
     } else {
-        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+	    if(textContent)
+            textContent.textContent = copyrightSince + ' - ' + copyrightNow
     }
 
     (function(){

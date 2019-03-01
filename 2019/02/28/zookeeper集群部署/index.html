@@ -277,7 +277,7 @@
             "@type": "ImageObject",
             "url": "/img/avatar-xesygao.png"
         },
-        "description": "Hi, nice to meet you"
+        "description": "Never start something you're not willing to finish"
     },
     "publisher": {
         "@type": "Organization",
@@ -347,7 +347,7 @@
         <p class="header-slogan header-item">
         
             
-                Hi, nice to meet you
+                Never start something you're not willing to finish
             
         
         </p>
@@ -480,47 +480,69 @@
 <li><strong>initLimit</strong><br>follower连接并同步到leader允许的最大时间间隔。数值为n个tickTime。</li>
 <li><strong>syncLimit</strong><br>follower服务器与leader服务器之间信息同步允许的最大时间间隔。数值为n个tickTime。</li>
 </ul>
-<h3 id="配置示例"><a href="#配置示例" class="headerlink" title="配置示例"></a>配置示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tickTime=2000</span><br><span class="line">initLimit=5</span><br><span class="line">syncLimit=2</span><br><span class="line">dataDir=/home/zookeeper/data</span><br><span class="line">dataLogDir=/home/zookeeper/logs</span><br><span class="line">clientPort=2181</span><br><span class="line">server.1=172.16.40.201:2888:3888</span><br><span class="line">server.2=172.16.40.202:2888:3888</span><br><span class="line">server.3=172.16.40.203:2888:3888</span><br></pre></td></tr></table></figure>
-<blockquote>
+<h3 id="配置示例"><a href="#配置示例" class="headerlink" title="配置示例"></a>配置示例</h3><pre><code>tickTime=2000
+initLimit=5
+syncLimit=2
+dataDir=/home/zookeeper/data
+dataLogDir=/home/zookeeper/logs
+clientPort=2181
+server.1=172.16.40.201:2888:3888
+server.2=172.16.40.202:2888:3888
+server.3=172.16.40.203:2888:3888
+</code></pre><blockquote>
 <p><strong>端口说明</strong><br>1.2181: 对client提供服务<br>2.2888: 集群内机器通讯使用<br>3.3888: 选举leader使用 </p>
 </blockquote>
 <h3 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h3><p><em>3台zk服务器为例：ServerA、ServerB、ServerC</em>   </p>
 <ol>
-<li><p>分别在3台服务器创建dataDir，dataLogDir目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /home/zookeeper/data</span><br><span class="line">mkdir -p /home/zookeeper/logs</span><br></pre></td></tr></table></figure>
+<li>分别在3台服务器创建dataDir，dataLogDir目录<pre><code class="bash">mkdir -p /home/zookeeper/data
+mkdir -p /home/zookeeper/logs
+</code></pre>
 </li>
-<li><p>分别在3台服务器下载并解压Zookeeper：<a href="https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.13/zookeeper-3.4.13.tar.gz" target="_blank" rel="noopener">下载</a>  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf zookeeper-3.4.13.tar.gz</span><br></pre></td></tr></table></figure>
+<li>分别在3台服务器下载并解压Zookeeper：<a href="https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.13/zookeeper-3.4.13.tar.gz" target="_blank" rel="noopener">下载</a>  <pre><code class="bash">tar -xzf zookeeper-3.4.13.tar.gz
+</code></pre>
 </li>
-<li><p>进入zookeeper目录，分别将 conf 目录下的 zoo_sample.cfg 复制一份重命名为 zoo201.cfg,zoo202.cfg,zoo203.cfg,并按照以上配置酌情修改。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp zoo_sample.cfg zoo201.cfg</span><br><span class="line">cp zoo_sample.cfg zoo202.cfg</span><br><span class="line">cp zoo_sample.cfg zoo203.cfg</span><br></pre></td></tr></table></figure>
+<li>进入zookeeper目录，分别将 conf 目录下的 zoo_sample.cfg 复制一份重命名为 zoo201.cfg,zoo202.cfg,zoo203.cfg,并按照以上配置酌情修改。<pre><code class="bash">cp zoo_sample.cfg zoo201.cfg
+cp zoo_sample.cfg zoo202.cfg
+cp zoo_sample.cfg zoo203.cfg
+</code></pre>
 </li>
 <li><p>分别在data目录下新建myid</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"1"</span> &gt; myid</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"2"</span> &gt; myid</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"3"</span> &gt; myid</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<pre><code class="bash">echo &quot;1&quot; &gt; myid
+echo &quot;2&quot; &gt; myid
+echo &quot;3&quot; &gt; myid
+</code></pre>
 <blockquote>
 <p>server.X 这个数字就是对应，data/myid中的数字。在3个server的myid文件中分别写入了1，2，3，那么每个server中的zoo.cfg都配 server.1, server.2,server.3就行了。</p>
 </blockquote>
-<ol start="5">
+</li>
 <li><p>分别启动zookeeper</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/zkServer.sh start conf/zoo201.cfg</span><br><span class="line">bin/zkServer.sh start conf/zoo202.cfg</span><br><span class="line">bin/zkServer.sh start conf/zoo203.cfg</span><br></pre></td></tr></table></figure>
+<pre><code class="bash">bin/zkServer.sh start conf/zoo201.cfg
+bin/zkServer.sh start conf/zoo202.cfg
+bin/zkServer.sh start conf/zoo203.cfg
+</code></pre>
 </li>
-<li><p>测试是否启动了该Server，若回复imok表示已经启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> ruok|nc 172.16.40.201 2181</span><br><span class="line"><span class="built_in">echo</span> ruok|nc 172.16.40.202 2181</span><br><span class="line"><span class="built_in">echo</span> ruok|nc 172.16.40.203 2181</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>连接到zk<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/zkCli.sh -server 172.16.40.201:2181</span><br><span class="line">bin/zkCli.sh -server 172.16.40.202:2181</span><br><span class="line">bin/zkCli.sh -server 172.16.40.203:2181</span><br></pre></td></tr></table></figure></p>
-<p>查看 zk 的运行状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/zkServer.sh status 172.16.40.201:2181</span><br><span class="line">bin/zkServer.sh status 172.16.40.202:2181</span><br><span class="line">bin/zkServer.sh status 172.16.40.203:2181</span><br></pre></td></tr></table></figure></p>
-<p>节点管理</p>
-<ol>
+<li>测试是否启动了该Server，若回复imok表示已经启动<pre><code class="bash">echo ruok|nc 172.16.40.201 2181
+echo ruok|nc 172.16.40.202 2181
+echo ruok|nc 172.16.40.203 2181
+</code></pre>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3>连接到zk<pre><code class="bash">bin/zkCli.sh -server 172.16.40.201:2181
+bin/zkCli.sh -server 172.16.40.202:2181
+bin/zkCli.sh -server 172.16.40.203:2181
+</code></pre>
+查看 zk 的运行状态<pre><code class="bash">bin/zkServer.sh status 172.16.40.201:2181
+bin/zkServer.sh status 172.16.40.202:2181
+bin/zkServer.sh status 172.16.40.203:2181
+</code></pre>
+节点管理</li>
 <li><strong>ls path:</strong> 查看当前 ZooKeeper 中所包含的内容</li>
 <li><strong>create /zk myData:</strong> 创建一个新的 znode。这个命令创建了一个新的 znode 节点“ zk ”以及与它关联的字符串。</li>
 <li><strong>get path:</strong> 获取该znode信息 </li>
 <li><strong>set path data:</strong> 给znode设置值(前提是值存在)</li>
 <li><strong>delete path:</strong> 删除该znode</li>
 </ol>
-<p>传递四个字母的字符串给ZooKeeper，ZooKeeper会返回一些有用的信息。例如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> envi |nc 172.16.40.201 2181</span><br></pre></td></tr></table></figure></p>
+<p>传递四个字母的字符串给ZooKeeper，ZooKeeper会返回一些有用的信息。例如:</p>
+<pre><code class="bash">echo envi |nc 172.16.40.201 2181
+</code></pre>
 <table>
 <thead>
 <tr>
@@ -668,6 +690,10 @@
 
 
 
+    
+        <script>lsloader.load("sm_js","/js/smoothscroll.js?lOy/ACj5suSNi7ZVFVbpFQ==", true)</script>
+    
+
 
 
 
@@ -690,6 +716,10 @@
 <!-- Import prettify js  -->
 
 
+    
+        <script>lsloader.load("hanabi","/js/hanabi-browser-bundle.js?Pki5+pzkluqu53g+ouMWpA==", true)</script>
+    
+
 
 <!-- Window Load -->
 <!-- add class for prettify -->
@@ -700,6 +730,10 @@
     });
 
     
+    
+        
+        
+        HanabiBrowser.start('pre code',false);
     
 </script>
 
@@ -733,11 +767,13 @@
     var copyrightNow = new Date().getFullYear();
     var textContent = document.querySelector('span[year]')
 
-    copyrightSince = 0000;
+    copyrightSince = 2019;
     if (copyrightSince === copyrightNow||copyrightSince === 0000) {
-        textContent.textContent = copyrightNow
+	    if(textContent)
+            textContent.textContent = copyrightNow
     } else {
-        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+	    if(textContent)
+            textContent.textContent = copyrightSince + ' - ' + copyrightNow
     }
 
     (function(){
