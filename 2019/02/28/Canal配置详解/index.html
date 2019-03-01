@@ -924,14 +924,14 @@
 
 <script>
     var gitalk = new Gitalk({
+			id: location.pathname,
             clientID: 'a5379e14bae57f35b702',
             clientSecret: '00b025b6b16857771772d06011edfdb3ae32cd46',
             repo: 'xesygao.github.io',
             owner: 'xesygao',
             admin: ['xesygao'],
             // facebook-like distraction free mode
-            distractionFreeMode: false,
-			id: 'https://page.xesygao.com/2019/02/28/Canal配置详解/'
+            distractionFreeMode: false
         })
    gitalk.render('gitalk-container')
 </script>
