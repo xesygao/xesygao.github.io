@@ -316,20 +316,9 @@
     <!-- Post Excerpt -->
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
         
-            ##Filebeat
-###安装下载目录结构
-###配置修改配置文件使其支持传输日志到Logstash
-filebeat.inputs:
-- type: log
-  enabled: true
-  paths:
-    - /var/log/*.log
-#默认启用的是elasticsearch，需将其配置注释掉
-output.logstash:
-  # The Logstash hosts
-  hosts: [&quot;localhost:5044&quot;]
-
-
+            Filebeat安装下载目录结构
+配置修改配置文件使其支持传输日志到Logstash
+filebeat.input...
         
         &nbsp;&nbsp;&nbsp;
         <span>

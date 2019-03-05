@@ -242,7 +242,7 @@
 
     
         <meta property="article:published_time" content="Tue Mar 05 2019 15:00:55 GMT+0800">
-        <meta property="article:modified_time" content="Tue Mar 05 2019 16:21:43 GMT+0800">
+        <meta property="article:modified_time" content="Tue Mar 05 2019 16:29:14 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -265,7 +265,7 @@
     "mainEntityOfPage": "https://page.xesygao.com/2019/03/05/日志处理/index.html",
     "headline": "日志处理",
     "datePublished": "Tue Mar 05 2019 15:00:55 GMT+0800",
-    "dateModified": "Tue Mar 05 2019 16:21:43 GMT+0800",
+    "dateModified": "Tue Mar 05 2019 16:29:14 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Xesygao",
@@ -342,6 +342,14 @@
 
     <!-- Left aligned menu below button -->
     
+    
+    <button id="post-toc-trigger-btn" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Filebeat"><span class="post-toc-number">1.</span> <span class="post-toc-text">Filebeat</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启动"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">启动</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Logstash"><span class="post-toc-number">2.</span> <span class="post-toc-text">Logstash</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置-1"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#启动-1"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">启动</span></a></li></ol></li></ol>
+    </ul>
     
 
 
@@ -493,9 +501,8 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>##Filebeat</p>
-<p>###安装<br><a href="https://www.elastic.co/downloads/beats/filebeat" target="_blank" rel="noopener">下载</a><br>目录结构<br><img src="https://ws1.sinaimg.cn/large/c6073458gy1g0rxzqub5hj20lq01u3yj.jpg" alt="目录结构"></p>
-<p>###配置<br>修改配置文件使其支持传输日志到Logstash</p>
+        <h2 id="Filebeat"><a href="#Filebeat" class="headerlink" title="Filebeat"></a>Filebeat</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><a href="https://www.elastic.co/downloads/beats/filebeat" target="_blank" rel="noopener">下载</a><br>目录结构<br><img src="https://ws1.sinaimg.cn/large/c6073458gy1g0rxzqub5hj20lq01u3yj.jpg" alt="目录结构"></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>修改配置文件使其支持传输日志到Logstash</p>
 <pre><code class="yaml">filebeat.inputs:
 - type: log
   enabled: true
@@ -506,19 +513,17 @@ output.logstash:
   # The Logstash hosts
   hosts: [&quot;localhost:5044&quot;]
 </code></pre>
-<p><em>在本例中，会读取log目录下，以.log结尾的文件。如果路径配置为/var/log/\</em>/*.log，则会读取log子目录底下以.log结尾的文件，而不会读取log目录下log文件*</p>
-<p>###启动</p>
-<pre><code class="bash">./filebeat -e -c filebeat.yml -d &quot;publish&quot;
+<p>在本例中，会读取log目录下，以.log结尾的文件。如果路径配置为/var/log/*/*.log，则会读取log子目录底下以.log结尾的文件，而不会读取log目录下log文件</p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><pre><code class="bash">./filebeat -e -c filebeat.yml -d &quot;publish&quot;
 </code></pre>
-<p>##Logstash</p>
-<p>##安装<br><a href="https://www.elastic.co/downloads/logstash" target="_blank" rel="noopener">下载</a><br>目录结构<br><img src="https://ws1.sinaimg.cn/large/c6073458gy1g0rzghbm5cj20mh02cglo.jpg" alt="目录结构"></p>
-<p>##配置<br>将config/logstash-sample.conf复制一份作为启用的配置文件</p>
+<h2 id="Logstash"><a href="#Logstash" class="headerlink" title="Logstash"></a>Logstash</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p><a href="https://www.elastic.co/downloads/logstash" target="_blank" rel="noopener">下载</a><br>目录结构<br><img src="https://ws1.sinaimg.cn/large/c6073458gy1g0rzghbm5cj20mh02cglo.jpg" alt="目录结构"></p>
+<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><p>将config/logstash-sample.conf复制一份作为启用的配置文件</p>
 <pre><code class="bash">cd config
 cp logstash-sample.conf my-config.conf
 </code></pre>
 <pre><code>input {
   beats {
-    port =&gt; 25044
+    port =&gt; 5044
   }
 }
 filter {
@@ -536,8 +541,7 @@ output {
     }
 
 }
-</code></pre><p>##启动</p>
-<pre><code class="bash">#测试配置文件是否可用
+</code></pre><h3 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h3><pre><code class="bash">#测试配置文件是否可用
 bin/logstash -f first-pipeline.conf --config.test_and_exit
 #启动logstash，当配置文件修改时自动重新加载
 bin/logstash -f first-pipeline.conf --config.reload.automatic
