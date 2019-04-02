@@ -244,7 +244,7 @@
 
     
         <meta property="article:published_time" content="Thu Feb 28 2019 15:41:41 GMT+0800">
-        <meta property="article:modified_time" content="Mon Mar 04 2019 14:06:21 GMT+0800">
+        <meta property="article:modified_time" content="Tue Apr 02 2019 14:40:27 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -267,7 +267,7 @@
     "mainEntityOfPage": "https://page.xesygao.com/2019/02/28/Canal服务端部署教程/index.html",
     "headline": "Canal服务端部署教程",
     "datePublished": "Thu Feb 28 2019 15:41:41 GMT+0800",
-    "dateModified": "Mon Mar 04 2019 14:06:21 GMT+0800",
+    "dateModified": "Tue Apr 02 2019 14:40:27 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Xesygao",
@@ -522,13 +522,13 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <h1 id="Canal服务端部署教程"><a href="#Canal服务端部署教程" class="headerlink" title="Canal服务端部署教程"></a>Canal服务端部署教程</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>下载所需版本的Canal：<a href="https://github.com/alibaba/canal/releases" target="_blank" rel="noopener">下载地址</a></p>
-<p>本文使用版本为<code>canal.deployer-1.1.0</code>，接下来以部署2台基于Zookeeper HA模式Canal为例</p>
+<p>本文使用版本为<code>canal.deployer-1.1.3 alpha3</code>，接下来以部署2台基于Zookeeper HA模式Canal为例</p>
 <p>解压下载的文件</p>
-<pre><code class="bash">tar -xzf canal.deployer-1.1.0.tar.gz -C canal.deployer-1.1.0
+<pre><code class="bash">tar -xzf canal.deployer-1.1.3-SNAPSHOT.tar.gz
 </code></pre>
-<p><img src="https://ws1.sinaimg.cn/large/c6073458gy1fv6hzalpr9j20mo04b74j.jpg" alt="解压"></p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>进入conf目录(IMMIG_200,IMMIG_201是之后新建的，后面的文档会提到)</p>
-<p><img src="https://ws1.sinaimg.cn/large/c6073458gy1fv6i3v3gtyj20ht02fwei.jpg" alt></p>
+<p><img src="https://ws1.sinaimg.cn/large/c6073458gy1g1o93rum9vj20ih02ijrf.jpg" alt="解压"></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>进入conf目录(BASEINFO_MHA是之后新建的，后面的文档会提到)</p>
+<p><img src="https://ws1.sinaimg.cn/large/c6073458gy1g1o97di4kuj20fp028aa3.jpg" alt></p>
 <h3 id="canal服务端配置文件修改"><a href="#canal服务端配置文件修改" class="headerlink" title="canal服务端配置文件修改"></a>canal服务端配置文件修改</h3><p>canal.properties为canal服务端全局配置文件<br>要修改的部分如下</p>
 <table>
 <thead>
@@ -540,14 +540,24 @@
 </thead>
 <tbody>
 <tr>
+<td>canal.id</td>
+<td>自定义</td>
+<td>每个canal server实例的唯一标识，暂无实际意义</td>
+</tr>
+<tr>
 <td>canal.zkServers</td>
 <td>172.16.40.201:2181,172.16.40.202:2181,172.16.40.203:2181</td>
 <td>ZK服务地址，多个以英文逗号分隔</td>
 </tr>
 <tr>
 <td>canal.destinations</td>
-<td>IMMIG_200,IMMIG_201</td>
-<td>Canal实例名称，多个实例用英文逗号分隔</td>
+<td>BASEINFO_MHA</td>
+<td>Canal实例名称，多个实例用英文逗号分隔，例如BASEINFO_MHA1,BASEINFO_MHA2</td>
+</tr>
+<tr>
+<td>canal.serverMode</td>
+<td>RocketMQ</td>
+<td>支持tcp, kafka, RocketMQ。tcp模式需要自己写消费端消费canal server数据</td>
 </tr>
 <tr>
 <td>canal.instance.global.spring.xml</td>
@@ -556,8 +566,8 @@
 </tr>
 <tr>
 <td>canal.instance.parser.parallel</td>
-<td>false</td>
-<td>是否使用并行解析。在Canal1.1.0中并行解析+GTID模式有bug，会导致丢数据。暂时改用串行解析</td>
+<td>true</td>
+<td>是否使用并行解析。在Canal1.1.0中并行解析+GTID模式有bug，会导致丢数据，之后的版本已修复。</td>
 </tr>
 <tr>
 <td>canal.instance.filter.query.dcl</td>
@@ -566,8 +576,18 @@
 </tr>
 <tr>
 <td>canal.instance.filter.query.ddl</td>
-<td>true</td>
+<td>false</td>
 <td>是否忽略ddl(数据库定义语言，比如说：CREATE、ALTER、DROP等)</td>
+</tr>
+<tr>
+<td>canal.mq.servers</td>
+<td>172.16.40.202:9876;172.16.40.203:9876</td>
+<td>RocketMQ nameserver地址</td>
+</tr>
+<tr>
+<td>canal.mq.retries</td>
+<td>0</td>
+<td>发送失败重试次数</td>
 </tr>
 </tbody>
 </table>
@@ -588,17 +608,22 @@
 </tr>
 <tr>
 <td>canal.instance.master.address</td>
-<td>172.16.40.200:3306</td>
-<td>监控mysql master的IP地址</td>
+<td>172.16.40.99:7066</td>
+<td>监控mysql master的IP地址(本例中监控的是vip)</td>
+</tr>
+<tr>
+<td>canal.instance.defaultDatabaseName</td>
+<td>baseinfo</td>
+<td>mysql链接时默认schema</td>
 </tr>
 <tr>
 <td>canal.instance.dbUsername</td>
-<td>canal</td>
+<td>root</td>
 <td>mysql用户</td>
 </tr>
 <tr>
 <td>canal.instance.dbPassword</td>
-<td>canal@2018</td>
+<td>mysqladmin</td>
 <td>mysql密码</td>
 </tr>
 <tr>
@@ -608,16 +633,37 @@
 </tr>
 <tr>
 <td>canal.instance.filter.regex</td>
-<td>.*\\..*</td>
-<td>监控规则正则表达式,多个规则以逗号分隔。如canal\\.w1代表监听canal库的w1表，.*\\..*代表监控所有库所有表。可不配置，之后在客户端里指定</td>
+<td>baseinfo\\.user_netcert_detail</td>
+<td>监控规则正则表达式,多个规则以逗号分隔。如canal\\.w1代表监听canal库的w1表，.*\\..*代表监控所有库所有表。</td>
 </tr>
 <tr>
 <td>canal.instance.filter.black.regex</td>
 <td>可不指定</td>
 <td>监控黑名单规则</td>
 </tr>
+<tr>
+<td>canal.mq.topic</td>
+<td>ctidc-mha-test</td>
+<td>mq里的topic名    </td>
+</tr>
+<tr>
+<td>canal.mq.partitionsNum</td>
+<td>4</td>
+<td>散列模式的分区数    </td>
+</tr>
+<tr>
+<td>canal.mq.partitionHash</td>
+<td>baseinfo.user_netcert_detail:netcert_id</td>
+<td>散列规则定义。库名.表名 : 唯一主键，比如mytest.person: id </td>
+</tr>
 </tbody>
 </table>
+<p>1.1.3版本支持partitionHash新语法，支持动态topic规则，参考<a href="https://github.com/alibaba/canal/wiki/Canal-Kafka-RocketMQ-QuickStart" target="_blank" rel="noopener">Canal-Kafka-RocketMQ-QuickStart</a><br>如果新建用户，需要做为mysql slave的相关权限</p>
+<pre><code class="sql">CREATE USER canal IDENTIFIED BY &#39;canal@2018&#39;;  
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO &#39;canal&#39;@&#39;%&#39;;
+-- GRANT ALL PRIVILEGES ON *.* TO &#39;canal&#39;@&#39;%&#39; ;
+FLUSH PRIVILEGES;
+</code></pre>
 <h2 id="启停"><a href="#启停" class="headerlink" title="启停"></a>启停</h2><p><strong>修改restart脚本</strong><br>进入canal bin目录</p>
 <pre><code class="bash">#!/bin/bash
 current_dir=`readlink -f $0 | xargs dirname`
@@ -631,20 +677,17 @@ sh $current_dir/startup.sh
 <pre><code class="bash">./zkCli.sh -server 172.16.40.201:2181
 </code></pre>
 <p><img src="https://ws1.sinaimg.cn/large/c6073458gy1fv6itek973j20h701hdfq.jpg" alt></p>
-<p>查看IMMIG_200实例正在运行的服务端</p>
-<pre><code class="bash">get /otter/canal/destinations/IMMIG_200/running
+<p>查看BASEINFO_MHA实例正在运行的服务端</p>
+<pre><code class="bash">get /otter/canal/destinations/BASEINFO_MHA/running
 </code></pre>
-<p><img src="https://ws1.sinaimg.cn/large/c6073458gy1fv6iv6zu26j20m106y3yy.jpg" alt></p>
+<p><img src="https://ws1.sinaimg.cn/large/c6073458gy1g1oa3zfy5zj20mc06ydga.jpg" alt></p>
 <p>查看Canal集群节点</p>
-<pre><code>ls /otter/canal/destinations/IMMIG_200/cluster
-</code></pre><p><img src="https://ws1.sinaimg.cn/large/c6073458gy1fv6iwirc1qj20lm01eq2u.jpg" alt></p>
-<p>查看IMMIG_200实例当前消费位点</p>
-<pre><code class="bash">get /otter/canal/destinations/IMMIG_200/1001/cursor
+<pre><code>ls /otter/canal/destinations/BASEINFO_MHA/cluster
+</code></pre><p><img src="https://ws1.sinaimg.cn/large/c6073458gy1g1oa5ch2nsj20ly01cmx2.jpg" alt></p>
+<p>查看BASEINFO_MHA实例当前消费位点</p>
+<pre><code class="bash">get /otter/canal/destinations/BASEINFO_MHA/1001/cursor
 </code></pre>
-<p><img src="https://ws1.sinaimg.cn/large/c6073458gy1fv6ixkjioej20pc08k0th.jpg" alt></p>
-<p>查看IMMIG_200实例监控规则</p>
-<pre><code>get /otter/canal/destinations/IMMIG_200/1001/filter
-</code></pre><p><img src="https://ws1.sinaimg.cn/large/c6073458gy1fv6j01i9kdj20mk071gm0.jpg" alt></p>
+<p><img src="https://ws1.sinaimg.cn/large/c6073458gy1g1oa78xzynj20qt080q3o.jpg" alt></p>
 
         
     
