@@ -323,6 +323,76 @@
     
 
         <!-- Post Title -->
+        <p class="article-headline-p"><a href="/2019/04/02/Canal问题与解决方案/">Canal问题与解决方案</a></p>
+    </div>
+
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            问题&amp;解决方案
+canal监控mysql master，当主节点故障或者主节点切换时，canal监控节点要同时切换解决方案：
+mysql使用mha+vip架构
+
+
+canal实例相当于mysql从节点，在HA模式下，当canal实例未消费的binlog在mysql master被清空时，会导致canal主从不同步。解决方案：
+可以通过
+show master status\G;
+来查看最新的位点，然后读取zk中位点信息，并更新为最新位点信息
+set /otter/canal/d...
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/2019/04/02/Canal问题与解决方案/" target="_self">阅读全文</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="https://blog.xesygao.com/wp-content/uploads/2017/01/avatar.png" width="44px" height="44px" alt="Xesygao's avatar">
+            </div>
+            <div>
+                <strong>Xesygao</strong>
+                <span>4月 02, 2019</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+          
+              <!-- Category -->
+              <span class="post_entry-category">
+                  <a class="post_category-link" href="/categories/学习记录/">学习记录</a>
+              </span>
+            
+
+            
+
+            
+
+            <!-- Post Views -->
+            <span class="post_entry-views">
+            </span>
+        </div>
+    </div>
+</div>
+
+            
+            
+        
+    
+        
+            
+                <!-- Paradox Thumbnail -->
+                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post Thumbnail -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+        
+    
+
+        <!-- Post Title -->
         <p class="article-headline-p"><a href="/2019/02/28/Canal配置详解/">Canal配置详解</a></p>
     </div>
 
@@ -538,7 +608,7 @@ tar -xzf canal.deployer-1.1.3-SNAPSHOT.tar.gz
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">5</span></a>
+                <a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">5</span></a>
             </li></ul>
         </li>
         
@@ -556,7 +626,7 @@ tar -xzf canal.deployer-1.1.3-SNAPSHOT.tar.gz
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/学习记录/">学习记录<span class="sidebar_archives-count">6</span></a>
+                <a class="sidebar_archives-link" href="/categories/学习记录/">学习记录<span class="sidebar_archives-count">7</span></a>
             </li></ul>
         </li>
         

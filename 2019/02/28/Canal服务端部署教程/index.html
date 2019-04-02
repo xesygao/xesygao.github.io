@@ -244,7 +244,7 @@
 
     
         <meta property="article:published_time" content="Thu Feb 28 2019 15:41:41 GMT+0800">
-        <meta property="article:modified_time" content="Tue Apr 02 2019 14:40:27 GMT+0800">
+        <meta property="article:modified_time" content="Tue Apr 02 2019 16:55:14 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -267,7 +267,7 @@
     "mainEntityOfPage": "https://page.xesygao.com/2019/02/28/Canal服务端部署教程/index.html",
     "headline": "Canal服务端部署教程",
     "datePublished": "Thu Feb 28 2019 15:41:41 GMT+0800",
-    "dateModified": "Tue Apr 02 2019 14:40:27 GMT+0800",
+    "dateModified": "Tue Apr 02 2019 16:55:14 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Xesygao",
@@ -658,7 +658,7 @@
 </tr>
 </tbody>
 </table>
-<p>1.1.3版本支持partitionHash新语法，支持动态topic规则，参考<a href="https://github.com/alibaba/canal/wiki/Canal-Kafka-RocketMQ-QuickStart" target="_blank" rel="noopener">Canal-Kafka-RocketMQ-QuickStart</a><br>如果新建用户，需要做为mysql slave的相关权限</p>
+<p>==canal.mq.partition 和 canal.mq.partitionsNum 这两个只能用一个，要注释掉其中一个==<br>1.1.3版本支持partitionHash新语法，支持动态topic规则，参考<a href="https://github.com/alibaba/canal/wiki/Canal-Kafka-RocketMQ-QuickStart" target="_blank" rel="noopener">Canal-Kafka-RocketMQ-QuickStart</a><br>如果新建用户，需要做为mysql slave的相关权限</p>
 <pre><code class="sql">CREATE USER canal IDENTIFIED BY &#39;canal@2018&#39;;  
 GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO &#39;canal&#39;@&#39;%&#39;;
 -- GRANT ALL PRIVILEGES ON *.* TO &#39;canal&#39;@&#39;%&#39; ;
@@ -846,7 +846,7 @@ sh $current_dir/startup.sh
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">5</span></a>
+                <a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/03/">三月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">5</span></a>
             </li></ul>
         </li>
         
@@ -864,7 +864,7 @@ sh $current_dir/startup.sh
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/学习记录/">学习记录<span class="sidebar_archives-count">6</span></a>
+                <a class="sidebar_archives-link" href="/categories/学习记录/">学习记录<span class="sidebar_archives-count">7</span></a>
             </li></ul>
         </li>
         
